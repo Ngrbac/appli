@@ -2,12 +2,15 @@
 {% block card %}
 {% endblock card %}
 {% block content %}
-    <div style="margin-top: 2rem;">
-        <h2>You have been logged out</h2>
-        <div class="border-top pt-3">
-            <small class="text-muted">
-                <a href="{% url 'login' %}">Log In Again</a>
-            </small>
-        </div>
+<div style="margin-top: 2rem;">
+    <h2>Odjavili ste se.</h2>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <a href="{% url 'login' %}">Prijavite se ovdje.</a>
+            <br />
+            <hr>
+            <a href="{% url 'home' %}">Povratak na naslovnu stranu.</a>
+        </small>
     </div>
+</div>
 {% endblock content %}

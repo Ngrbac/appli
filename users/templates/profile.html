@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if error %}
+<div class="container-fluid" style="margin-top:2rem">
+    <h1>
+        Nemate pravo pristupa profilu.
+    </h1>
+    <br>
+    <hr>
+    <a href="{% url 'home' %}">Povratak na početnu.</a>
+</div>
+{% else %}
+<div class="container-fluid" style="margin-top:2rem">
+
+    <h3>Korisnik:</h3>
+    <h2><b>{{ current_user.username }}</b></h2>
+    <hr>
+
+    <table>
+        <tr>
+            <td>
+                <h3>Ime:</h3>
+            </td>
+            <td style="padding-left: 15pt;">
+                <h3>{{ current_user.first_name }}</h3>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h3>Prezime:</h3>
+            </td>
+            <td style="padding-left: 15pt;">
+                <h3>{{ current_user.last_name }}</h3>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h3>E-mail adresa:</h3>
+            </td>
+            <td style="padding-left: 15pt;">
+                <h3>{{ current_user.email }}</h3>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h3>Omiljeni gradovi:</h3>
+            </td>
+            <td style="padding-left: 15pt;">
+                <ul>
+                    {% for city in current_user.weathercity_set %}
+                    <h4>
+                        <li>{{ current_user.name }}</li>
+                    </h4>
+                    {% endfor %}
+                </ul>
+            </td>            
+        </tr>
+    </table>
+</div>
+{% endif %}
+{% endblock content %}
