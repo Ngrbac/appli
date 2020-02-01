@@ -26,10 +26,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'openweather.apps.OpenweatherConfig',
+    # Dodani appovi:
     'users.apps.UsersConfig',
     'api.apps.ApiConfig',
-    'rest_framework',
-    #'rest_framework.authtoken',    
+    'rest_framework',   
     'crispy_forms',
 ]
 
@@ -41,6 +41,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    ### Middleware za cachiranje da se spriječi nepotrebno requestanje na OWM API.
+    ### Onemogućen radi brojnih sukoba sa raznim elementima koji se koriste.
+    ### Razlog vjerojatno db kao mjesto cachiranja, nisam stigao riješit taj problem.  
+    
+    # 'django.middleware.cache.UpdateCacheMiddleware',
+    # 'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 
 ROOT_URLCONF = 'maidea.urls'
@@ -113,6 +120,20 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Crispy je paket templatea za forme na templateima.
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+# Preusmjeravanje default stranice nakon što se korisnik prijavi.
+
 LOGIN_REDIRECT_URL = '/'
+
+
+### Drugi dio dijela za cachiranje, uz MIDDLEWARE.
+
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+#         'LOCATION': 'django_cache_table',
+#     }
+# }

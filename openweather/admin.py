@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import WeatherCity
 
-# Register your models here.
+# Omogućuje pregledavanje gradova na /admin dashboardu.
+
+admin.site.register(WeatherCity)

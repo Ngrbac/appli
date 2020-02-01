@@ -1,6 +1,10 @@
 from django.db import models
-from django.contrib.auth.models import User
 from django.conf import settings
+
+### Model za gradove.
+
+# Featured atribut je za dodavanje fiksnih gradova sa strane.
+# Favourite je za dodavanje omiljenih gradova. ManyToMany field spaja trenutnog korisnika i grad putem PK.
 
 class WeatherCity(models.Model):
     name = models.CharField(max_length=100)    

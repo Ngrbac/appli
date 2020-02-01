@@ -46,17 +46,15 @@
             <td>
                 <h3>Omiljeni gradovi:</h3>
             </td>
-            <td style="padding-left: 15pt;">
-                <ul>
-                    {% for city in current_user.weathercity_set %}
-                    <h4>
-                        <li>{{ current_user.name }}</li>
-                    </h4>
-                    {% endfor %}
-                </ul>
-            </td>            
         </tr>
     </table>
+    <ul>
+        {% for city in current_user.weathercity_set %}
+        <h4>
+            <li>{{ city.name }}</li>
+        </h4>
+        {% endfor %}
+    </ul>
 </div>
 {% endif %}
 {% endblock content %}

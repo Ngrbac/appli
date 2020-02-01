@@ -1,49 +1,89 @@
 {% extends "base.html" %}
-{% block content %}
-    <div class="container-fluid" style="margin-top:2rem">
-        
-        <h2><b>{{ data.name }}</b></h2>
-        {% if fav %}
-            <a href="{% url 'unfavourite' api_id=data.id %}">Unfavourite!</a><br />
-        {% else %}
-            <a href="{% url 'favourite' name=city api_id=data.id %}">Favourite!</a><br />
-        {% endif %}
-        <small class="text-muted"> (jer ste tražili "{{ city }}")</small>
-        <hr>
-        <table>
-            <tr>
-                <td><h3>Temperatura:</h3></td>
-                <td style="padding-left: 15pt;"><h3>{{ data.main.temp }}°F</h3></td>
-            </tr>
-            <tr>
-                <td><h3>Osjećaj temperature:</h3></td>
-                <td style="padding-left: 15pt;"><h3>{{ data.main.feels_like }}°F</h3></td>
-            </tr>
-            <tr>
-                <td><h3>Tlak zraka:</h3></td>
-                <td style="padding-left: 15pt;"><h3>{{ data.main.pressure }} hPa</h3></td>
-            </tr>
-            <tr>
-                <td><h3>Vlaga:</h3></td>
-                <td style="padding-left: 15pt;"><h3>{{ data.main.humidity }}%</h3></td>
-            </tr>
-            <tr>
-                <td><h3>Vjetar:</h3></td>
-                <td style="padding-left: 15pt;"><h3>{{ data.wind.speed }} čv.</h3></td>
-            </tr>
 
-            {% for weather in data.weather|slice:"1" %}
-            <tr>
-                <td><h3>Vrijeme:</h3></td>
-                <td style="padding-left: 15pt;"><h3>{{ weather.main }}</h3></td>
-            </tr>
-            {% if weather.description %}
-                <tr>
-                    <td><h3>Vrijeme - dodatno:</h3></td>
-                    <td style="padding-left: 15pt;"><h3>{{ weather.description }}</h3></td>
-                </tr>
-            {% endif %}
-            {% endfor %}            
-        </table>
-    </div>
+{% block content %}
+{% if error %}
+<div class="container-fluid" style="margin-top:2rem">
+    <h1>
+        Grad nije pronađen. 
+    </h1>
+    <br>
+    <hr>
+    <a href="{% url 'home' %}">Povratak na početnu.</a>
+</div>
+{% else %}
+<div class="container-fluid" style="margin-top:2rem">
+
+    <h2><b>{{ data.name }}</b></h2>
+    {% if fav %}
+    <a href="{% url 'unfavourite' api_id=data.id %}">Unfavourite!</a><br />
+    {% else %}
+    <a href="{% url 'favourite' name=city api_id=data.id %}">Favourite!</a><br />
+    {% endif %}
+    <small class="text-muted"> (jer ste tražili "{{ city }}")</small>
+    <hr>
+    <table>
+        <tr>
+            <td>
+                <h3>Temperatura:</h3>
+            </td>
+            <td style="padding-left: 15pt;">
+                <h3>{{ data.main.temp }}°F</h3>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h3>Osjećaj temperature:</h3>
+            </td>
+            <td style="padding-left: 15pt;">
+                <h3>{{ data.main.feels_like }}°F</h3>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h3>Tlak zraka:</h3>
+            </td>
+            <td style="padding-left: 15pt;">
+                <h3>{{ data.main.pressure }} hPa</h3>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h3>Vlaga:</h3>
+            </td>
+            <td style="padding-left: 15pt;">
+                <h3>{{ data.main.humidity }}%</h3>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h3>Vjetar:</h3>
+            </td>
+            <td style="padding-left: 15pt;">
+                <h3>{{ data.wind.speed }} čv.</h3>
+            </td>
+        </tr>
+
+        {% for weather in data.weather|slice:"1" %}
+        <tr>
+            <td>
+                <h3>Vrijeme:</h3>
+            </td>
+            <td style="padding-left: 15pt;">
+                <h3>{{ weather.main }}</h3>
+            </td>
+        </tr>
+        {% if weather.description %}
+        <tr>
+            <td>
+                <h3>Vrijeme - dodatno:</h3>
+            </td>
+            <td style="padding-left: 15pt;">
+                <h3>{{ weather.description }}</h3>
+            </td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </table>
+</div>
+{% endif %}
 {% endblock content %}

@@ -50,7 +50,7 @@ class Profile(generics.RetrieveAPIView):
         else:
             return Response(status=status.HTTP_401_UNAUTHORIZED)
 
-### API sekcija: ne koristi se u templateima, no može se koristiti za CRUD funkcije. 
+### API sekcija: ne koristi se u templateima, no može se koristiti za CRUD funkcije.
 ### Dozvole su određene za svaku zasebno, osvisno o potencijalnoj opasnosti.
 
 class UserFullListView(generics.ListAPIView):
