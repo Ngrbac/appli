@@ -5,7 +5,7 @@ autopep8==1.4.4
 certifi==2019.11.28
 chardet==3.0.4
 colorama==0.4.3
-Django==3.0
+Django==3.0.14
 django-crispy-forms==1.8.1
 django-rest-auth==0.9.5
 django-timezone-field==4.0
